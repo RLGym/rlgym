@@ -1,9 +1,9 @@
-from abc import abstractmethod
+from abc import abstractmethod, ABC
 from typing import Any, Dict, List, Generic
 from ..typing import AgentID, StateType
 
 
-class DoneCondition(Generic[AgentID, StateType]):
+class DoneCondition(ABC, Generic[AgentID, StateType]):
     """
     A termination/truncation condition. This class is responsible for determining when an episode should end for each agent.
     """

@@ -1,9 +1,9 @@
-from abc import abstractmethod
+from abc import abstractmethod, ABC
 from typing import Any, Dict, List, Generic
 from ..typing import AgentID, RewardType, StateType
 
 
-class RewardFunction(Generic[AgentID, StateType, RewardType]):
+class RewardFunction(ABC, Generic[AgentID, StateType, RewardType]):
     """
     The reward function. This class is responsible for computing the reward for each agent in the environment.
     """

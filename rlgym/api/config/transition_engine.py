@@ -1,9 +1,9 @@
-from abc import abstractmethod
+from abc import abstractmethod, ABC
 from typing import Any, Dict, List, Generic
 from ..typing import AgentID, EngineActionType, StateType
 
 
-class TransitionEngine(Generic[AgentID, StateType, EngineActionType]):
+class TransitionEngine(ABC, Generic[AgentID, StateType, EngineActionType]):
     """
     The Transition Engine class. This class is responsible for managing the state of the environment and stepping the
     environment forward in time.
