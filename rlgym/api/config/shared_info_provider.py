@@ -1,9 +1,9 @@
-from abc import abstractmethod
+from abc import abstractmethod, ABC
 from typing import Generic, Dict, Any, List
 from ..typing import AgentID, StateType
 
 
-class SharedInfoProvider(Generic[AgentID, StateType]):
+class SharedInfoProvider(ABC, Generic[AgentID, StateType]):
     """
     The shared information provider. This class is responsible for managing shared information across all config objects.
     """

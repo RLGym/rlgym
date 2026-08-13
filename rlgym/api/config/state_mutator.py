@@ -1,9 +1,9 @@
-from abc import abstractmethod
+from abc import abstractmethod, ABC
 from typing import Any, Dict, Generic
 from ..typing import StateType
 
 
-class StateMutator(Generic[StateType]):
+class StateMutator(ABC, Generic[StateType]):
     """
     The state mutator class. This class is responsible for modifying the state of the environment.
     """

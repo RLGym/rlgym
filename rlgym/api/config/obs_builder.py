@@ -1,9 +1,9 @@
-from abc import abstractmethod
+from abc import abstractmethod, ABC
 from typing import Any, Dict, List, Generic
 from ..typing import AgentID, ObsType, StateType, ObsSpaceType
 
 
-class ObsBuilder(Generic[AgentID, ObsType, StateType, ObsSpaceType]):
+class ObsBuilder(ABC, Generic[AgentID, ObsType, StateType, ObsSpaceType]):
     """
     The observation builder. This class is responsible for building observations for each agent in the environment.
     """

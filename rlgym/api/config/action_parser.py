@@ -1,9 +1,9 @@
-from abc import abstractmethod
+from abc import abstractmethod, ABC
 from typing import Any, Dict, Generic, List
 from ..typing import AgentID, ActionType, EngineActionType, StateType, ActionSpaceType
 
 
-class ActionParser(Generic[AgentID, ActionType, EngineActionType, StateType, ActionSpaceType]):
+class ActionParser(ABC, Generic[AgentID, ActionType, EngineActionType, StateType, ActionSpaceType]):
     """
     The action parser. This class is responsible for receiving actions from the agents and parsing them into a format
     supported by the TransitionEngine.

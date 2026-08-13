@@ -1,12 +1,12 @@
 """
 An RLGym renderer.
 """
-from abc import abstractmethod
+from abc import abstractmethod, ABC
 from typing import Any, Dict, Generic
 from ..typing import StateType
 
 
-class Renderer(Generic[StateType]):
+class Renderer(ABC, Generic[StateType]):
     """
     The renderer class. This class is responsible for rendering a state.
     """
