@@ -1,6 +1,8 @@
 """
     Object to contain all relevant information about the game state.
 """
+from __future__ import annotations
+
 import numpy as np
 from dataclasses import dataclass
 from typing import Dict, Generic, Optional
