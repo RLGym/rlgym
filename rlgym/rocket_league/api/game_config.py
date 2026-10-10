@@ -1,14 +1,11 @@
 from dataclasses import dataclass
 
-from .utils import create_default_init
+from .utils import auto_init_slots
 
 
-@dataclass(init=False)
+@auto_init_slots
+@dataclass(slots=True, init=False)
 class GameConfig:
     gravity: float
     boost_consumption: float
     dodge_deadzone: float  # TODO move to car?
-
-    __slots__ = tuple(__annotations__)
-
-    exec(create_default_init(__slots__))

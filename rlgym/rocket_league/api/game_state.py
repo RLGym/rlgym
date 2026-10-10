@@ -1,18 +1,20 @@
 """
     Object to contain all relevant information about the game state.
 """
-import numpy as np
 from dataclasses import dataclass
 from typing import Dict, Generic, Optional
+
+import numpy as np
 
 from rlgym.api import AgentID
 from .car import Car
 from .game_config import GameConfig
 from .physics_object import PhysicsObject
-from .utils import create_default_init
+from .utils import auto_init_slots
 
 
-@dataclass(init=False)
+@auto_init_slots
+@dataclass(slots=True, init=False)
 class GameState(Generic[AgentID]):
     tick_count: int  # The total number of ticks that have passed in the game
     goal_scored: bool
@@ -22,10 +24,6 @@ class GameState(Generic[AgentID]):
     _inverted_ball: PhysicsObject
     boost_pad_timers: np.ndarray  # time, in seconds, until ith boost pad is available (in [0,10] (10 comes from max(BoostPads::COOLDOWN_BIG, BoostPads::COOLDOWN_SMALL), but these cooldowns can be overridden in MutatorConfig)) - boost pads are indexed in the order given by BOOST_LOCATIONS in common_values.py
     _inverted_boost_pad_timers: np.ndarray
-
-    __slots__ = tuple(__annotations__)
-
-    exec(create_default_init(__slots__))
 
     @property
     def scoring_team(self) -> Optional[int]:

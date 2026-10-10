@@ -2,13 +2,14 @@ import numpy as np
 from dataclasses import dataclass
 from typing import TypeVar, Optional
 
-from .utils import create_default_init
+from .utils import auto_init_slots
 from ..math import euler_to_rotation, quat_to_euler, quat_to_rot_mtx, rotation_to_quaternion
 
 T = TypeVar('T')
 
 
-@dataclass(init=False)
+@auto_init_slots
+@dataclass(slots=True, init=False)
 class PhysicsObject:
     INV_VEC = np.array([-1, -1, 1], dtype=np.float32)
     INV_MTX = np.array([[-1, -1, -1], [-1, -1, -1], [1, 1, 1]], dtype=np.float32)
@@ -19,10 +20,6 @@ class PhysicsObject:
     _quaternion: Optional[np.ndarray]
     _rotation_mtx: Optional[np.ndarray]
     _euler_angles: Optional[np.ndarray]
-
-    __slots__ = tuple(__annotations__)
-
-    exec(create_default_init(__slots__))
 
     def inverted(self: T) -> T:
         inv = PhysicsObject()

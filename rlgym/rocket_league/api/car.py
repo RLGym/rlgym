@@ -5,11 +5,12 @@ import numpy as np
 from rlgym.api import AgentID
 
 from .physics_object import PhysicsObject
-from .utils import create_default_init
+from .utils import auto_init_slots
 from ..common_values import DOUBLEJUMP_MAX_DELAY, FLIP_TORQUE_TIME, BLUE_TEAM, ORANGE_TEAM
 
 
-@dataclass(init=False)
+@auto_init_slots
+@dataclass(slots=True, init=False)
 class Car(Generic[AgentID]):
     # Misc Data
     team_num: int  # the team of this car, constants in common_values.py
@@ -46,10 +47,6 @@ class Car(Generic[AgentID]):
     # Physics
     physics: PhysicsObject
     _inverted_physics: PhysicsObject  # Cache for inverted physics
-
-    __slots__ = tuple(__annotations__)
-
-    exec(create_default_init(__slots__))
 
     @property
     def is_blue(self) -> bool:
